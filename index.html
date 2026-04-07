@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>GoViral Marketplace — Buy & Sell Social Accounts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --accent: #E5373A;
+  --accent-dim: #c0272a;
+  --accent-glow: rgba(229,55,58,0.18);
+  --dark: #09090c;
+  --surface: #111118;
+  --card: #16161d;
+  --card2: #1b1b24;
+  --border: rgba(229,55,58,0.18);
+  --border2: rgba(255,255,255,0.06);
+  --text: #f0eef5;
+  --muted: #8a8898;
+  --red: #ff4444;
+  --gold: #ffc107;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--dark);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  width:100%;
+  max-width:100vw;
+}
+
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.5;
+}
+
+/* ─── NAV ─── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(9,9,12,0.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-weight:400;font-size:22px;letter-spacing:3px;
+  display:flex;align-items:center;gap:8px;
+  flex-shrink:0;
+}
+.nav-logo span{color:var(--accent);}
+.nav-logo small{
+  font-size:9px;font-weight:700;font-family:'DM Sans',sans-serif;
+  background:var(--accent);color:#fff;
+  padding:2px 7px;border-radius:20px;
+  letter-spacing:.6px;text-transform:uppercase;
+}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 16px;border-radius:var(--radius-sm);
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;
+  cursor:pointer;border:none;transition:all .2s;text-decoration:none;
+  white-space:nowrap;
+}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.btn-primary{background:var(--accent);color:#fff;font-weight:700;}
+.btn-primary:hover{background:var(--accent-dim);transform:translateY(-1px);}
+.btn-sm{padding:7px 13px;font-size:12px;}
+.btn-danger{background:#ff444420;color:var(--red);border:1px solid #ff444430;}
+.btn-danger:hover{background:#ff444430;}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  padding:72px 24px 56px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(229,55,58,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(32px,6vw,62px);
+  font-weight:400;line-height:1.05;letter-spacing:2px;
+  max-width:680px;margin:0 auto 14px;
+}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero p{
+  color:var(--muted);font-size:15px;max-width:460px;
+  margin:0 auto 28px;line-height:1.7;
+}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.stats-row{
+  display:flex;justify-content:center;gap:40px;
+  margin-top:44px;flex-wrap:wrap;
+}
+.stat{text-align:center;}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;font-size:30px;font-weight:400;
+  color:var(--accent);letter-spacing:2px;
+}
+.stat-label{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:.3px;}
+
+/* ─── SEARCH / FILTER BAR ─── */
+.filter-bar{
+  padding:0 20px 24px;
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  max-width:1100px;margin:0 auto;
+}
+.search-wrap{
+  flex:1;min-width:200px;
+  position:relative;
+}
+.search-wrap input{
+  width:100%;padding:11px 16px 11px 42px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);color:var(--text);
+  font-family:'DM Sans',sans-serif;font-size:14px;
+  outline:none;transition:border .2s;
+}
+.search-wrap input:focus{border-color:var(--accent);}
+.search-wrap input::placeholder{color:var(--muted);}
+.search-icon{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:16px;
+}
+.filter-select{
+  padding:11px 14px;background:var(--card);
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;
+  outline:none;cursor:pointer;
+}
+.filter-select:focus{border-color:var(--accent);}
+.platform-tabs{
+  display:flex;gap:6px;padding:0 20px 20px;
+  max-width:1100px;margin:0 auto;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.platform-tabs::-webkit-scrollbar{display:none;}
+.tab{
+  padding:7px 15px;border-radius:20px;font-size:12px;font-weight:500;
+  cursor:pointer;border:1px solid var(--border2);
+  background:transparent;color:var(--muted);
+  transition:all .2s;display:flex;align-items:center;gap:5px;
+  flex-shrink:0;
+}
+.tab:hover{border-color:var(--accent);color:var(--text);}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;}
+
+/* ─── LISTINGS GRID ─── */
+.section{max-width:1100px;margin:0 auto;padding:0 20px 60px;}
+.section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;font-weight:400;letter-spacing:1.5px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:11px;
+}
+
+/* ─── LISTING CARD ─── */
+.card{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:11px;padding:14px;
+  transition:all .22s;cursor:pointer;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--accent-glow),transparent 60%);
+  opacity:0;transition:opacity .22s;pointer-events:none;
+}
+.card:hover{border-color:rgba(229,55,58,0.3);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.45);}
+.card:hover::before{opacity:1;}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.platform-badge{
+  display:flex;align-items:center;gap:7px;
+}
+.platform-icon{
+  width:30px;height:30px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;flex-shrink:0;
+}
+.pi-facebook{background:#1877f218;color:#1877f2;}
+.pi-instagram{background:linear-gradient(135deg,#f0902018,#e040fb18);color:#e040fb;}
+.pi-twitter{background:#1da1f218;color:#1da1f2;}
+.pi-tiktok{background:#ff008018;color:#ff0080;}
+.pi-youtube{background:#ff000018;color:#ff0000;}
+.pi-snapchat{background:#fffc0018;color:#c8c800;}
+.platform-name{font-weight:600;font-size:13px;}
+.platform-type{font-size:10px;color:var(--muted);}
+.verified-badge{
+  background:#E5373A12;color:var(--accent);
+  border:1px solid #E5373A28;
+  padding:2px 7px;border-radius:20px;
+  font-size:9px;font-weight:700;letter-spacing:.5px;
+  flex-shrink:0;
+}
+.card-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:6px;
+  margin-bottom:10px;
+}
+.stat-box{
+  background:var(--surface);border-radius:6px;
+  padding:7px 10px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.stat-box-label{font-size:9px;color:var(--muted);margin-bottom:2px;letter-spacing:.4px;text-transform:uppercase;}
+.stat-box-val{font-family:'Bebas Neue',sans-serif;font-size:14px;font-weight:400;letter-spacing:.5px;}
+.stat-box-val.green{color:var(--accent);}
+.card-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:10px;}
+.card-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--border2);padding-top:10px;
+}
+.price{
+  font-family:'Bebas Neue',sans-serif;font-size:20px;font-weight:400;
+  letter-spacing:1px;color:var(--accent);
+}
+.price span{font-size:11px;font-weight:400;color:var(--muted);}
+.escrow-tag{
+  font-size:10px;color:var(--accent);
+  display:flex;align-items:center;gap:3px;
+  background:var(--accent-glow);padding:2px 8px;border-radius:20px;
+  border:1px solid rgba(229,55,58,0.2);
+}
+.seller-row{
+  display:flex;align-items:center;gap:7px;margin-bottom:10px;
+}
+.avatar{
+  width:24px;height:24px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#8b1a1a);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.seller-name{font-size:12px;font-weight:500;}
+.seller-rating{font-size:10px;color:var(--gold);}
+
+/* ─── EMPTY STATE ─── */
+.empty{
+  text-align:center;padding:60px 20px;
+  color:var(--muted);
+}
+.empty-icon{font-size:48px;margin-bottom:16px;}
+.empty h3{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--text);margin-bottom:8px;}
+
+/* ─── MODALS ─── */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.8);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  z-index:200;
+  display:none;align-items:center;justify-content:center;padding:16px;
+}
+.overlay.open{display:flex;}
+.modal{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:18px;width:100%;max-width:520px;
+  max-height:90vh;overflow-y:auto;
+  animation:slideUp .3s ease;
+  position:relative;
+}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.modal-header{
+  padding:22px 22px 0;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:18px;
+  position:sticky;top:0;
+  background:var(--surface);
+  border-radius:18px 18px 0 0;
+  z-index:10;
+  border-bottom:1px solid var(--border2);
+  padding-bottom:16px;
+}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:18px;font-weight:700;}
+.close-btn{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--card2);border:none;color:var(--muted);
+  font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;
+}
+.close-btn:hover{background:var(--border);color:var(--text);}
+.modal-body{padding:0 22px 24px;}
+
+/* ─── FORM ─── */
+.form-group{margin-bottom:14px;}
+.form-label{
+  display:block;font-size:12px;font-weight:600;letter-spacing:.3px;
+  color:var(--muted);margin-bottom:6px;text-transform:uppercase;
+}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:11px 14px;
+  background:var(--card);border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--radius-sm);color:var(--text);
+  font-family:'DM Sans',sans-serif;font-size:14px;
+  outline:none;transition:border .2s;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);background:var(--card2);}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--muted);}
+.form-textarea{resize:vertical;min-height:90px;line-height:1.6;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-hint{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.5;}
+.form-submit{width:100%;margin-top:8px;padding:13px 18px;font-size:14px;}
+.form-divider{
+  display:flex;align-items:center;gap:12px;
+  margin:20px 0 16px;
+}
+.form-divider-line{flex:1;height:1px;background:var(--border2);}
+.form-divider-text{font-size:11px;color:var(--muted);letter-spacing:.4px;text-transform:uppercase;white-space:nowrap;}
+
+/* ─── SCREENSHOT UPLOAD ─── */
+.upload-zone{
+  border:2px dashed rgba(229,55,58,0.25);
+  border-radius:var(--radius-sm);
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:all .2s;
+  background:rgba(229,55,58,0.02);
+}
+.upload-zone:hover{border-color:var(--accent);background:var(--accent-glow);}
+.upload-zone-icon{font-size:28px;margin-bottom:8px;}
+.upload-zone-text{font-size:13px;font-weight:600;margin-bottom:4px;}
+.upload-zone-sub{font-size:11px;color:var(--muted);}
+.screenshot-previews{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;
+}
+.screenshot-preview-item{
+  position:relative;
+  width:80px;height:80px;
+}
+.screenshot-preview-item img{
+  width:80px;height:80px;
+  object-fit:cover;border-radius:8px;
+  border:1px solid var(--border);
+}
+.screenshot-remove{
+  position:absolute;top:-7px;right:-7px;
+  width:20px;height:20px;
+  background:var(--red);border:2px solid var(--dark);
+  border-radius:50%;color:#fff;font-size:9px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
+
+/* ─── LISTING DETAIL MODAL ─── */
+.detail-platform{
+  display:flex;align-items:center;gap:14px;margin-bottom:20px;
+}
+.detail-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;font-weight:800;flex-shrink:0;
+}
+.detail-title{font-family:'Bebas Neue',sans-serif;font-size:20px;font-weight:800;}
+.detail-subtitle{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5;}
+.detail-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;
+}
+.detail-stat{
+  background:var(--card);border-radius:var(--radius-sm);
+  padding:14px;text-align:center;
+  border:1px solid var(--border2);
+}
+.detail-stat-val{font-family:'Bebas Neue',sans-serif;font-size:19px;font-weight:800;color:var(--accent);}
+.detail-stat-label{font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:.3px;text-transform:uppercase;}
+.detail-desc{
+  background:var(--card);border-radius:var(--radius-sm);
+  padding:16px;margin-bottom:18px;
+  font-size:14px;color:var(--muted);line-height:1.7;
+  border:1px solid var(--border2);
+}
+.escrow-info{
+  background:rgba(229,55,58,0.05);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px;margin-bottom:18px;
+}
+.escrow-info h4{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.escrow-info p{font-size:12px;color:var(--muted);line-height:1.65;}
+.detail-price-row{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;
+}
+.detail-price{font-family:'Bebas Neue',sans-serif;font-size:30px;font-weight:800;color:var(--accent);}
+
+/* ─── CHAT MODAL ─── */
+.chat-messages{
+  height:280px;overflow-y:auto;
+  background:var(--card);border-radius:var(--radius-sm);
+  padding:14px;margin-bottom:14px;
+  display:flex;flex-direction:column;gap:10px;
+  border:1px solid var(--border2);
+}
+.chat-msg{max-width:80%;}
+.chat-msg.mine{align-self:flex-end;}
+.chat-msg.theirs{align-self:flex-start;}
+.bubble{
+  padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.55;
+}
+.mine .bubble{background:var(--accent);color:#fff;border-bottom-right-radius:4px;}
+.theirs .bubble{background:var(--card2);color:var(--text);border-bottom-left-radius:4px;}
+.msg-time{font-size:10px;color:var(--muted);margin-top:4px;text-align:right;}
+.theirs .msg-time{text-align:left;}
+.chat-input-row{display:flex;gap:8px;}
+.chat-input-row input{
+  flex:1;padding:10px 14px;
+  background:var(--card);border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--radius-sm);color:var(--text);
+  font-family:'DM Sans',sans-serif;font-size:14px;outline:none;
+}
+.chat-input-row input:focus{border-color:var(--accent);}
+
+/* ─── ADMIN PANEL ─── */
+.admin-tabs{display:flex;gap:0;margin-bottom:22px;border-bottom:1px solid var(--border2);}
+.admin-tab{
+  padding:10px 18px;font-size:13px;font-weight:500;
+  cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;
+  transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;
+}
+.admin-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.admin-listing{
+  background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-sm);
+  padding:14px;margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+}
+.admin-listing-info{flex:1;}
+.admin-listing-title{font-weight:600;font-size:13px;}
+.admin-listing-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.admin-actions{display:flex;gap:6px;flex-shrink:0;}
+.btn-approve{background:#E5373A18;color:var(--accent);border:1px solid #E5373A28;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600;}
+.btn-approve:hover{background:#E5373A30;}
+.btn-reject{background:#ff444418;color:var(--red);border:1px solid #ff444428;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600;}
+.btn-reject:hover{background:#ff444430;}
+
+/* ─── WALLET ─── */
+.wallet-card{
+  background:linear-gradient(135deg,#1c0d0e 0%,#16161d 60%,#0f1420 100%);
+  border:1px solid rgba(229,55,58,0.28);
+  border-radius:var(--radius);
+  padding:24px;margin-bottom:18px;
+  position:relative;overflow:hidden;
+}
+.wallet-card::after{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:140px;height:140px;
+  background:radial-gradient(circle,rgba(229,55,58,0.12),transparent 70%);
+  pointer-events:none;
+}
+.wallet-label{font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:.6px;text-transform:uppercase;font-weight:600;}
+.wallet-amount{font-family:'Bebas Neue',sans-serif;font-size:34px;font-weight:800;color:var(--accent);}
+.wallet-sub{font-size:12px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px;}
+
+.goviral-balance-card{
+  background:var(--card);
+  border:1px solid rgba(229,55,58,0.15);
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  margin-bottom:18px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.goviral-balance-label{font-size:12px;color:var(--muted);font-weight:500;}
+.goviral-balance-val{font-family:'Bebas Neue',sans-serif;font-size:18px;font-weight:800;color:var(--accent);}
+.goviral-balance-sub{font-size:10px;color:var(--muted);margin-top:1px;}
+
+.transfer-block{
+  background:var(--card);
+  border:1px solid var(--border2);
+  border-radius:var(--radius-sm);
+  padding:16px;
+  margin-bottom:18px;
+}
+.transfer-block-title{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text);}
+.transfer-row{display:flex;gap:8px;}
+
+.section-label{
+  font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;margin-top:4px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border2);}
+
+.escrow-status-box{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--radius-sm);padding:12px 14px;
+  font-size:13px;color:var(--muted);margin-bottom:18px;
+  line-height:1.55;
+}
+
+.bank-saved-item{
+  background:var(--card2);border:1px solid var(--border2);
+  border-radius:var(--radius-sm);padding:12px 14px;
+  display:flex;align-items:center;gap:12px;cursor:pointer;
+  transition:all .2s;margin-bottom:8px;
+}
+.bank-saved-item:hover,.bank-saved-item.selected{border-color:var(--accent);background:var(--accent-glow);}
+.bank-saved-icon{font-size:20px;width:36px;height:36px;background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.bank-saved-info{flex:1;}
+.bank-saved-name{font-size:13px;font-weight:600;}
+.bank-saved-num{font-size:11px;color:var(--muted);margin-top:1px;}
+.check-circle{width:20px;height:20px;border-radius:50%;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.check-circle.active{background:var(--accent);border-color:var(--accent);}
+
+.save-bank-check{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--muted);
+  cursor:pointer;margin-bottom:14px;
+}
+.save-bank-check input{
+  width:16px;height:16px;
+  accent-color:var(--accent);cursor:pointer;
+}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:24px;right:16px;z-index:999;
+  background:var(--card2);border:1px solid rgba(229,55,58,0.2);
+  border-radius:var(--radius-sm);padding:14px 18px;
+  display:flex;align-items:center;gap:10px;
+  transform:translateY(90px);opacity:0;
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;min-width:240px;max-width:320px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-icon{font-size:18px;flex-shrink:0;}
+.toast-msg{font-size:13px;line-height:1.45;}
+
+/* ─── AUTH ─── */
+.auth-overlay{
+  position:fixed;inset:0;background:var(--dark);z-index:300;
+  display:flex;align-items:center;justify-content:center;padding:16px;
+  overflow-y:auto;
+}
+.auth-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;width:100%;max-width:400px;padding:32px;
+}
+.auth-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;font-weight:800;
+  text-align:center;margin-bottom:6px;
+}
+.auth-logo span{color:var(--accent);}
+.auth-sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:26px;line-height:1.6;}
+.auth-toggle{
+  text-align:center;margin-top:16px;font-size:13px;color:var(--muted);
+}
+.auth-toggle a{color:var(--accent);cursor:pointer;text-decoration:none;font-weight:600;}
+.divider{text-align:center;color:var(--muted);font-size:12px;margin:16px 0;position:relative;}
+.divider::before,.divider::after{
+  content:'';position:absolute;top:50%;width:42%;height:1px;
+  background:var(--border2);
+}
+.divider::before{left:0;} .divider::after{right:0;}
+
+/* ─── BADGES ─── */
+.pending-badge{
+  background:#ffc10718;color:var(--gold);
+  border:1px solid #ffc10728;
+  padding:3px 8px;border-radius:20px;
+  font-size:10px;font-weight:700;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px;
+}
+.dot-green{background:var(--accent);}
+.dot-yellow{background:var(--gold);}
+.dot-red{background:var(--red);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:600px){
+  .hero{padding:52px 16px 44px;}
+  .hero h1{font-size:26px;}
+  .stats-row{gap:20px;}
+  .form-row{grid-template-columns:1fr;}
+  .detail-stats{grid-template-columns:1fr 1fr;}
+  nav{padding:0 14px;}
+  .nav-logo small{display:none;}
+  .btn-sm{padding:7px 11px;font-size:12px;}
+  .filter-bar,.section{padding-left:14px;padding-right:14px;}
+  .platform-tabs{padding-left:14px;padding-right:14px;}
+  .modal{border-radius:16px;}
+  .wallet-amount{font-size:28px;}
+  .detail-price{font-size:26px;}
+  .auth-box{padding:24px 20px;}
+  .modal-header{padding:18px 18px 14px;}
+  .modal-body{padding:0 18px 20px;}
+  .transfer-row{flex-direction:column;}
+}
+@media(max-width:400px){
+  .nav-actions .btn-ghost:not(#adminBtn):not(#logoutBtn) { display:none; }
+  #walletNavBtn{display:inline-flex!important;}
+  #listNavBtn{display:inline-flex!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── AUTH SCREEN ─── -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <div class="auth-logo">Go<span>Viral</span> <small style="font-size:11px;background:var(--accent);color:#fff;padding:2px 8px;border-radius:20px;vertical-align:middle;font-weight:700;">MARKET</small></div>
+    <p class="auth-sub">The premier marketplace for buying and selling<br>verified social media accounts in Nigeria.</p>
+    <div id="loginForm">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="loginEmail" placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="loginPassword" placeholder="••••••••"/>
+      </div>
+      <button class="btn btn-primary form-submit" onclick="handleLogin()">Sign In to Your Account →</button>
+      <div class="auth-toggle">New to GoViral Market? <a onclick="switchAuth('register')">Create a free account</a></div>
+    </div>
+    <div id="registerForm" style="display:none;">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" id="regName" placeholder="Your full name"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-input" id="regUsername" placeholder="@handle"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="regEmail" placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="regPassword" placeholder="Minimum 6 characters"/>
+      </div>
+      <button class="btn btn-primary form-submit" onclick="handleRegister()">Create Account →</button>
+      <div class="auth-toggle">Already have an account? <a onclick="switchAuth('login')">Sign in here</a></div>
+    </div>
+    <div class="divider">or continue as</div>
+    <button class="btn btn-ghost form-submit" onclick="demoLogin()">👀 Browse as Guest</button>
+  </div>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">
+    Go<span>Viral</span>
+    <small>MARKET</small>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-ghost btn-sm" onclick="openAdmin()" id="adminBtn" style="display:none;">⚙ Admin</button>
+    <button class="btn btn-ghost btn-sm" id="walletNavBtn" onclick="openWallet()">💰 Wallet</button>
+    <button class="btn btn-primary btn-sm" id="listNavBtn" onclick="openListModal()">+ List Account</button>
+    <button class="btn btn-ghost btn-sm" onclick="logout()" id="logoutBtn" style="display:none;">Sign Out</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <h1>Nigeria's Most Trusted<br>Platform to <em>Buy & Sell</em> Social Accounts</h1>
+  <p>Verified listings, escrow-protected transactions, and seamless Naira settlement — built for serious buyers and sellers.</p>
+  <div class="hero-ctas">
+    <button class="btn btn-primary" onclick="scrollToListings()">Browse Listings</button>
+    <button class="btn btn-ghost" onclick="openListModal()">List Your Account</button>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num" id="statListings">0</div><div class="stat-label">Active Listings</div></div>
+    <div class="stat"><div class="stat-num">₦0</div><div class="stat-label">Total Escrowed</div></div>
+    <div class="stat"><div class="stat-num" id="statSold">0</div><div class="stat-label">Accounts Sold</div></div>
+  </div>
+</div>
+
+<!-- ─── FILTER BAR ─── -->
+<div class="filter-bar">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" placeholder="Search by niche, platform, keywords..." id="searchInput" oninput="filterListings()"/>
+  </div>
+  <select class="filter-select" id="sortSelect" onchange="filterListings()">
+    <option value="newest">Newest First</option>
+    <option value="price-low">Price: Low to High</option>
+    <option value="price-high">Price: High to Low</option>
+    <option value="followers">Most Followers</option>
+  </select>
+  <select class="filter-select" id="priceFilter" onchange="filterListings()">
+    <option value="">All Prices</option>
+    <option value="0-50000">Under ₦50,000</option>
+    <option value="50000-200000">₦50k – ₦200k</option>
+    <option value="200000-500000">₦200k – ₦500k</option>
+    <option value="500000-99999999">Above ₦500k</option>
+  </select>
+</div>
+
+<div class="platform-tabs" id="platformTabs">
+  <button class="tab active" onclick="setTab('all',this)">🌐 All Platforms</button>
+  <button class="tab" onclick="setTab('Instagram',this)">📷 Instagram</button>
+  <button class="tab" onclick="setTab('Twitter',this)">🐦 Twitter / X</button>
+  <button class="tab" onclick="setTab('Facebook',this)">👥 Facebook</button>
+  <button class="tab" onclick="setTab('TikTok',this)">🎵 TikTok</button>
+  <button class="tab" onclick="setTab('YouTube',this)">▶️ YouTube</button>
+  <button class="tab" onclick="setTab('Snapchat',this)">👻 Snapchat</button>
+</div>
+
+<!-- ─── LISTINGS ─── -->
+<div class="section" id="listingsSection">
+  <div class="section-header">
+    <div class="section-title">Active Listings</div>
+    <div style="font-size:13px;color:var(--muted);" id="listingCount">Loading...</div>
+  </div>
+  <div class="grid" id="listingsGrid"></div>
+</div>
+
+<!-- ─── LIST ACCOUNT MODAL ─── -->
+<div class="overlay" id="listModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📢 List Your Account</div>
+      <button class="close-btn" onclick="closeModal('listModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Platform</label>
+        <select class="form-select" id="listPlatform">
+          <option>Instagram</option>
+          <option>Twitter</option>
+          <option>Facebook</option>
+          <option>TikTok</option>
+          <option>YouTube</option>
+          <option>Snapchat</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Account Niche / Category</label>
+        <input type="text" class="form-input" id="listNiche" placeholder="e.g. Fashion & Lifestyle, Comedy, Tech Reviews…"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Follower Count</label>
+          <input type="number" class="form-input" id="listFollowers" placeholder="e.g. 50000"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Avg. Monthly Reach</label>
+          <input type="text" class="form-input" id="listReach" placeholder="e.g. 200K"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Engagement Rate (%)</label>
+          <input type="number" class="form-input" id="listEngagement" placeholder="e.g. 4.2" step="0.1"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Account Age (years)</label>
+          <input type="number" class="form-input" id="listAge" placeholder="e.g. 3"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Asking Price (₦)</label>
+        <input type="number" class="form-input" id="listPrice" placeholder="e.g. 150000"/>
+        <div class="form-hint">A 5% platform fee applies upon successful sale. All payments are processed through GoViral Escrow.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Account Description</label>
+        <textarea class="form-textarea" id="listDesc" placeholder="Describe your account — content niche, audience demographics, monetization history, reason for selling, and any other relevant details…"></textarea>
+      </div>
+
+      <!-- Screenshot Upload -->
+      <div class="form-group">
+        <label class="form-label">Proof of Ownership (Screenshots)</label>
+        <div class="upload-zone" onclick="document.getElementById('screenshotFileInput').click()">
+          <div class="upload-zone-icon">📸</div>
+          <div class="upload-zone-text">Upload Screenshots</div>
+          <div class="upload-zone-sub">Click to select images — up to 3 screenshots</div>
+        </div>
+        <input type="file" id="screenshotFileInput" accept="image/*" multiple style="display:none;" onchange="handleScreenshotUpload(this)"/>
+        <div class="screenshot-previews" id="screenshotPreviews"></div>
+        <div class="form-hint">Upload up to 3 screenshots showing account insights, follower count, or profile. Images are compressed automatically.</div>
+      </div>
+
+      <button class="btn btn-primary form-submit" onclick="submitListing()">Submit for Review →</button>
+      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px;">Listings are reviewed by our team and typically go live within 2 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── LISTING DETAIL MODAL ─── -->
+<div class="overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Listing Details</div>
+      <button class="close-btn" onclick="closeModal('detailModal')">✕</button>
+    </div>
+    <div class="modal-body" id="detailContent"></div>
+  </div>
+</div>
+
+<!-- ─── CHAT MODAL ─── -->
+<div class="overlay" id="chatModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="chatTitle">💬 Secure Messaging</div>
+      <button class="close-btn" onclick="closeModal('chatModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Write a message…" onkeydown="if(event.key==='Enter')sendMessage()"/>
+        <button class="btn btn-primary btn-sm" onclick="sendMessage()">Send</button>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:10px;text-align:center;line-height:1.55;">⚠️ Never share account credentials until escrow payment is fully confirmed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WALLET MODAL ─── -->
+<div class="overlay" id="walletModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-header">
+      <div class="modal-title">💰 My Wallet</div>
+      <button class="close-btn" onclick="closeModal('walletModal')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Marketplace Balance -->
+      <div class="wallet-card">
+        <div class="wallet-label">Marketplace Balance</div>
+        <div class="wallet-amount" id="walletBalance">₦0.00</div>
+        <div class="wallet-sub">
+          <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+          Escrow protected &nbsp;·&nbsp; Instant Naira settlement
+        </div>
+      </div>
+
+      <!-- GoViral Balance -->
+      <div class="goviral-balance-card">
+        <div>
+          <div class="goviral-balance-label">GoViral Wallet Balance</div>
+          <div class="goviral-balance-sub">Your balance on the main GoViral app</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="goviral-balance-val" id="goviralBalance">—</div>
+          <button onclick="refreshGoviralBalance()" style="background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;margin-top:2px;">↻ Refresh</button>
+        </div>
+      </div>
+
+      <!-- Escrow Status -->
+      <div class="section-label">Escrow Status</div>
+      <div class="escrow-status-box" id="escrowList">No active escrow transactions.</div>
+
+      <!-- Transfer from GoViral -->
+      <div class="section-label">Transfer Funds</div>
+      <div class="transfer-block">
+        <div class="transfer-block-title">Move funds from GoViral → Marketplace Wallet</div>
+        <div class="transfer-row">
+          <input type="number" class="form-input" id="transferAmount" placeholder="Enter amount (₦)" min="100" style="flex:1;"/>
+          <button class="btn btn-primary" onclick="transferFromGoviral()" style="white-space:nowrap;">Transfer</button>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;">Funds transfer instantly between your GoViral and Marketplace wallets.</div>
+      </div>
+
+      <!-- Fund via Paystack -->
+      <div class="section-label">Fund via Paystack</div>
+      <div class="form-group">
+        <div style="display:flex;gap:8px;">
+          <input type="number" class="form-input" id="fundAmount" placeholder="Enter top-up amount (₦)" style="flex:1;"/>
+          <button class="btn btn-primary" onclick="fundWallet()">Pay Now</button>
+        </div>
+      </div>
+
+      <!-- Withdrawal Section -->
+      <div class="section-label">Request Withdrawal</div>
+
+      <!-- Saved Banks -->
+      <div id="savedBanksContainer" style="margin-bottom:14px;display:none;">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:600;">Saved Accounts</div>
+        <div id="savedBanksList"></div>
+        <button onclick="showNewBankForm()" style="background:none;border:1px dashed var(--border2);border-radius:8px;color:var(--muted);font-size:12px;padding:8px 14px;cursor:pointer;width:100%;margin-bottom:14px;">+ Use a different account</button>
+      </div>
+
+      <!-- Bank Details Form -->
+      <div id="bankDetailsForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Bank Name</label>
+            <input type="text" class="form-input" id="withdrawBank" placeholder="e.g. GTBank, Access, Opay"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Account Number</label>
+            <input type="text" class="form-input" id="withdrawAccNum" placeholder="0123456789" maxlength="10"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Account Name</label>
+          <input type="text" class="form-input" id="withdrawAccName" placeholder="Full name as registered with bank"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Amount to Withdraw (₦)</label>
+          <input type="number" class="form-input" id="withdrawAmount" placeholder="Minimum ₦500"/>
+        </div>
+        <label class="save-bank-check">
+          <input type="checkbox" id="saveBank"/> Save this account for future withdrawals
+        </label>
+        <button class="btn btn-primary form-submit" onclick="submitWithdrawal()">Submit Withdrawal Request →</button>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px;">Withdrawals are processed within 24 hours on business days.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── ADMIN MODAL ─── -->
+<div class="overlay" id="adminModal">
+  <div class="modal" style="max-width:620px;">
+    <div class="modal-header">
+      <div class="modal-title">⚙ Admin Panel</div>
+      <button class="close-btn" onclick="closeModal('adminModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="adminTab('pending',this)">Pending Review</button>
+        <button class="admin-tab" onclick="adminTab('active',this)">Active Listings</button>
+        <button class="admin-tab" onclick="adminTab('escrow',this)">Escrow Queue</button>
+      </div>
+      <div id="adminContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── BUY CONFIRM MODAL ─── -->
+<div class="overlay" id="buyModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <div class="modal-title">🔐 Confirm Purchase</div>
+      <button class="close-btn" onclick="closeModal('buyModal')">✕</button>
+    </div>
+    <div class="modal-body" id="buyContent"></div>
+  </div>
+</div>
+
+<!-- ─── TOAST ─── -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">✅</span>
+  <span class="toast-msg" id="toastMsg"></span>
+</div>
+
+<!-- ─── FIREBASE ─── -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, getDocs, doc, updateDoc,
+  query, where, orderBy, onSnapshot, serverTimestamp, getDoc, setDoc, runTransaction
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ─── FIREBASE CONFIG — Same GoViral project ───
+const firebaseConfig = {
+  apiKey: "AIzaSyA7eXQyh8al-om5CElLT2gMafOW-9TT_w8",
+  authDomain: "go-viral-2b556.firebaseapp.com",
+  databaseURL: "https://go-viral-2b556-default-rtdb.firebaseio.com",
+  projectId: "go-viral-2b556",
+  storageBucket: "go-viral-2b556.firebasestorage.app",
+  messagingSenderId: "657657784640",
+  appId: "1:657657784640:web:1edfb86ff20ccc98ae32a5",
+  measurementId: "G-RKNMZ4R4L2"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ─── ADMIN UIDs — Same as GoViral admin ───
+const ADMIN_UIDS = ["YOUR_ADMIN_UID"];
+
+// ─── STATE ───
+let currentUser = null;
+let currentUserData = null;
+let allListings = [];
+let currentTab = 'all';
+let activeChatId = null;
+let activeDetailId = null;
+let chatUnsub = null;
+let savedBanks = [];
+let selectedSavedBankIndex = -1;
+let uploadedScreenshots = [];
+
+// Expose globals for non-module functions
+window._db = db;
+window._auth = auth;
+window._col = collection;
+window._addDoc = addDoc;
+window._getDocs = getDocs;
+window._doc = doc;
+window._updateDoc = updateDoc;
+window._query = query;
+window._where = where;
+window._orderBy = orderBy;
+window._onSnapshot = onSnapshot;
+window._serverTimestamp = serverTimestamp;
+window._getDoc = getDoc;
+window._setDoc = setDoc;
+window._ADMIN_UIDS = ADMIN_UIDS;
+
+// ─── AUTH STATE ───
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    currentUser = user;
+    document.getElementById('authOverlay').style.display = 'none';
+    document.getElementById('logoutBtn').style.display = 'inline-flex';
+    if (ADMIN_UIDS.includes(user.uid)) {
+      document.getElementById('adminBtn').style.display = 'inline-flex';
+    }
+    const walletRef = doc(db, 'marketplace_wallets', user.uid);
+    const walletSnap = await getDoc(walletRef);
+    if (!walletSnap.exists()) {
+      await setDoc(walletRef, { balance: 0, escrow: 0, uid: user.uid, email: user.email, createdAt: serverTimestamp() });
+    }
+    currentUserData = (await getDoc(walletRef)).data();
+    loadListings();
+  } else {
+    currentUser = null;
+    currentUserData = null;
+    document.getElementById('authOverlay').style.display = 'flex';
+    document.getElementById('logoutBtn').style.display = 'none';
+    document.getElementById('adminBtn').style.display = 'none';
+  }
+});
+
+// ─── AUTH FUNCTIONS ───
+window.handleLogin = async () => {
+  const email = document.getElementById('loginEmail').value;
+  const pw = document.getElementById('loginPassword').value;
+  if (!email || !pw) return toast('Please enter your email and password','⚠️');
+  try {
+    await signInWithEmailAndPassword(auth, email, pw);
+    toast('Welcome back!','👋');
+  } catch(e) { toast(e.message,'❌'); }
+};
+
+window.handleRegister = async () => {
+  const name = document.getElementById('regName').value;
+  const email = document.getElementById('regEmail').value;
+  const pw = document.getElementById('regPassword').value;
+  if (!name || !email || !pw) return toast('Please complete all required fields','⚠️');
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pw);
+    await setDoc(doc(db,'marketplace_users', cred.user.uid), {
+      name, email, uid: cred.user.uid,
+      username: document.getElementById('regUsername').value,
+      createdAt: serverTimestamp(), role: 'user'
+    });
+    toast('Account created successfully!','🎉');
+  } catch(e) { toast(e.message,'❌'); }
+};
+
+window.demoLogin = () => {
+  document.getElementById('authOverlay').style.display = 'none';
+  loadListingsDirect();
+  toast('Browsing as guest — sign in to buy or sell','👀');
+};
+
+window.logout = async () => {
+  await signOut(auth);
+  toast('You have been signed out','👋');
+};
+
+window.switchAuth = (mode) => {
+  document.getElementById('loginForm').style.display = mode === 'login' ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = mode === 'register' ? 'block' : 'none';
+};
+
+// ─── LOAD LISTINGS ───
+async function loadListings() {
+  try {
+    const q = query(collection(db,'marketplace_listings'), where('status','==','active'), orderBy('createdAt','desc'));
+    onSnapshot(q, (snap) => {
+      allListings = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderListings(allListings);
+      document.getElementById('statListings').textContent = allListings.length;
+    });
+  } catch(e) {
+    loadListingsDirect();
+  }
+}
+
+async function loadListingsDirect() {
+  allListings = getDemoListings();
+  renderListings(allListings);
+  document.getElementById('statListings').textContent = allListings.length;
+}
+
+// ─── SCREENSHOT UPLOAD ───
+window.handleScreenshotUpload = (input) => {
+  const files = Array.from(input.files);
+  const remaining = 3 - uploadedScreenshots.length;
+  if (remaining <= 0) { toast('Maximum of 3 screenshots allowed','⚠️'); return; }
+  const toProcess = files.slice(0, remaining);
+  toProcess.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const maxDim = 700;
+        let w = img.width, h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+          else { w = Math.round(w * maxDim / h); h = maxDim; }
+        }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        const b64 = canvas.toDataURL('image/jpeg', 0.65);
+        uploadedScreenshots.push(b64);
+        renderScreenshotPreviews();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = '';
+};
+
+function renderScreenshotPreviews() {
+  const container = document.getElementById('screenshotPreviews');
+  container.innerHTML = uploadedScreenshots.map((b64, i) => `
+    <div class="screenshot-preview-item">
+      <img src="${b64}" alt="Screenshot ${i+1}"/>
+      <div class="screenshot-remove" onclick="removeScreenshot(${i})">✕</div>
+    </div>
+  `).join('');
+  const zone = document.querySelector('.upload-zone');
+  if (zone) {
+    zone.style.opacity = uploadedScreenshots.length >= 3 ? '0.4' : '1';
+    zone.style.pointerEvents = uploadedScreenshots.length >= 3 ? 'none' : 'auto';
+  }
+}
+
+window.removeScreenshot = (i) => {
+  uploadedScreenshots.splice(i, 1);
+  renderScreenshotPreviews();
+};
+
+// ─── SUBMIT LISTING ───
+window.submitListing = async () => {
+  if (!currentUser) return toast('Please sign in to submit a listing','⚠️');
+  const platform = document.getElementById('listPlatform').value;
+  const niche = document.getElementById('listNiche').value;
+  const followers = parseInt(document.getElementById('listFollowers').value);
+  const reach = document.getElementById('listReach').value;
+  const engagement = parseFloat(document.getElementById('listEngagement').value);
+  const age = parseFloat(document.getElementById('listAge').value);
+  const price = parseInt(document.getElementById('listPrice').value);
+  const desc = document.getElementById('listDesc').value;
+  if (!niche || !followers || !price || !desc) return toast('Please fill in all required fields','⚠️');
+  try {
+    await addDoc(collection(db,'marketplace_listings'), {
+      platform, niche, followers, reach, engagement, age, price, desc,
+      screenshots: uploadedScreenshots,
+      sellerId: currentUser.uid,
+      sellerEmail: currentUser.email,
+      status: 'pending',
+      createdAt: serverTimestamp()
+    });
+    closeModal('listModal');
+    toast('Listing submitted for review — usually approved within 2 hours','🎉');
+    // Reset form
+    ['listNiche','listFollowers','listReach','listEngagement','listAge','listPrice','listDesc'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    uploadedScreenshots = [];
+    renderScreenshotPreviews();
+  } catch(e) { toast('Submission failed: ' + e.message,'❌'); }
+};
+
+// ─── RENDER LISTINGS ───
+window.renderListings = (listings) => {
+  const grid = document.getElementById('listingsGrid');
+  let filtered = listings;
+  if (currentTab !== 'all') filtered = filtered.filter(l => l.platform === currentTab);
+  const q = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+  if (q) filtered = filtered.filter(l => (l.niche+l.platform+l.desc).toLowerCase().includes(q));
+  const pf = document.getElementById('priceFilter')?.value;
+  if (pf) {
+    const [min,max] = pf.split('-').map(Number);
+    filtered = filtered.filter(l => l.price >= min && l.price <= max);
+  }
+  const sort = document.getElementById('sortSelect')?.value || 'newest';
+  if (sort === 'price-low') filtered.sort((a,b)=>a.price-b.price);
+  else if (sort === 'price-high') filtered.sort((a,b)=>b.price-a.price);
+  else if (sort === 'followers') filtered.sort((a,b)=>b.followers-a.followers);
+
+  document.getElementById('listingCount').textContent = `${filtered.length} listing${filtered.length!==1?'s':''} found`;
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="empty-icon">🔍</div><h3>No listings found</h3><p>Try adjusting your search filters</p></div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map(l => cardHTML(l)).join('');
+};
+
+function cardHTML(l) {
+  const icons = {Instagram:'📷',Twitter:'🐦',Facebook:'👥',TikTok:'🎵',YouTube:'▶️',Snapchat:'👻'};
+  const classes = {Instagram:'pi-instagram',Twitter:'pi-twitter',Facebook:'pi-facebook',TikTok:'pi-tiktok',YouTube:'pi-youtube',Snapchat:'pi-snapchat'};
+  const fmtNum = n => n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(1)+'K' : n;
+  const initials = (l.sellerEmail||'U').slice(0,2).toUpperCase();
+  return `
+  <div class="card" onclick="openDetail('${l.id}')">
+    <div class="card-top">
+      <div class="platform-badge">
+        <div class="platform-icon ${classes[l.platform]||'pi-twitter'}">${icons[l.platform]||'🌐'}</div>
+        <div>
+          <div class="platform-name">${l.platform}</div>
+          <div class="platform-type">${l.niche||'General'}</div>
+        </div>
+      </div>
+      <span class="verified-badge">✓ VERIFIED</span>
+    </div>
+    <div class="seller-row">
+      <div class="avatar">${initials}</div>
+      <div>
+        <div class="seller-name">${l.sellerName||'Verified Seller'}</div>
+        <div class="seller-rating">★★★★★ (${Math.floor(Math.random()*20+5)} reviews)</div>
+      </div>
+    </div>
+    <div class="card-stats">
+      <div class="stat-box">
+        <div class="stat-box-label">Followers</div>
+        <div class="stat-box-val green">${fmtNum(l.followers||0)}</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">Engagement</div>
+        <div class="stat-box-val">${l.engagement||'N/A'}%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">Reach</div>
+        <div class="stat-box-val">${l.reach||'N/A'}</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">Account Age</div>
+        <div class="stat-box-val">${l.age||'N/A'} yrs</div>
+      </div>
+    </div>
+    <p class="card-desc">${(l.desc||'').slice(0,110)}${(l.desc||'').length>110?'…':''}</p>
+    <div class="card-footer">
+      <div>
+        <div class="price">₦${Number(l.price||0).toLocaleString()} <span>NGN</span></div>
+      </div>
+      <span class="escrow-tag">🔒 Escrow</span>
+    </div>
+  </div>`;
+}
+
+// ─── DETAIL MODAL ───
+window.openDetail = (id) => {
+  const l = allListings.find(x => x.id === id) || getDemoListings().find(x=>x.id===id);
+  if (!l) return;
+  activeDetailId = id;
+  const icons = {Instagram:'📷',Twitter:'🐦',Facebook:'👥',TikTok:'🎵',YouTube:'▶️',Snapchat:'👻'};
+  const classes = {Instagram:'pi-instagram',Twitter:'pi-twitter',Facebook:'pi-facebook',TikTok:'pi-tiktok',YouTube:'pi-youtube',Snapchat:'pi-snapchat'};
+  const fmtNum = n => n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(1)+'K' : n;
+  const screenshotsHTML = (l.screenshots && l.screenshots.length) ? `
+    <div style="margin-bottom:18px;">
+      <div style="font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.3px;text-transform:uppercase;margin-bottom:10px;">Ownership Proof</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        ${l.screenshots.map(s=>`<img src="${s}" style="width:90px;height:90px;object-fit:cover;border-radius:8px;border:1px solid var(--border2);cursor:pointer;" onclick="window.open(this.src,'_blank')">`).join('')}
+      </div>
+    </div>` : '';
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-platform">
+      <div class="detail-icon ${classes[l.platform]||'pi-twitter'}">${icons[l.platform]||'🌐'}</div>
+      <div>
+        <div class="detail-title">${l.platform} · ${l.niche}</div>
+        <div class="detail-subtitle">Listed by ${l.sellerName||'Verified Seller'} &nbsp;·&nbsp; ${l.age||'N/A'} years old</div>
+      </div>
+    </div>
+    <div class="detail-stats">
+      <div class="detail-stat"><div class="detail-stat-val">${fmtNum(l.followers||0)}</div><div class="detail-stat-label">Followers</div></div>
+      <div class="detail-stat"><div class="detail-stat-val">${l.engagement||'N/A'}%</div><div class="detail-stat-label">Engagement</div></div>
+      <div class="detail-stat"><div class="detail-stat-val">${l.reach||'N/A'}</div><div class="detail-stat-label">Monthly Reach</div></div>
+    </div>
+    <div class="detail-desc">${l.desc||'No description provided.'}</div>
+    ${screenshotsHTML}
+    <div class="escrow-info">
+      <h4>🔒 GoViral Escrow Protection</h4>
+      <p>Your payment is held securely until you confirm successful account transfer. If the seller fails to deliver, you receive a full refund. Disputes are resolved by our admin team within 24 hours.</p>
+    </div>
+    <div class="detail-price-row">
+      <div class="detail-price">₦${Number(l.price||0).toLocaleString()}</div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:var(--muted);">Platform fee (5%): ₦${Math.round((l.price||0)*0.05).toLocaleString()}</div>
+        <div style="font-size:12px;color:var(--text);font-weight:600;">Total: ₦${Math.round((l.price||0)*1.05).toLocaleString()}</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-primary" style="flex:1;padding:13px;" onclick="initiatePurchase('${l.id}')">Buy Now — Escrow Protected</button>
+      <button class="btn btn-ghost" onclick="openChat('${l.id}','${l.sellerName||'Seller'}')">💬 Message</button>
+    </div>
+  `;
+  openModal('detailModal');
+};
+
+// ─── PURCHASE ───
+window.initiatePurchase = (id) => {
+  if (!currentUser) return toast('Please sign in to purchase','⚠️');
+  const l = allListings.find(x=>x.id===id) || getDemoListings().find(x=>x.id===id);
+  if (!l) return;
+  const total = Math.round((l.price||0)*1.05);
+  document.getElementById('buyContent').innerHTML = `
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:44px;margin-bottom:10px;">🔐</div>
+      <p style="color:var(--muted);font-size:14px;line-height:1.65;">
+        You are placing <strong style="color:var(--text)">₦${total.toLocaleString()}</strong> into escrow for this ${l.platform} account.
+        Funds are released to the seller only after you confirm access.
+      </p>
+    </div>
+    <div class="escrow-info" style="margin-bottom:18px;">
+      <h4>How the Escrow Process Works</h4>
+      <p>1. You pay via Paystack — funds enter secure escrow<br>2. Seller transfers account credentials to you<br>3. You confirm successful access — funds released to seller<br>4. Dispute? Our admin team resolves it within 24 hours</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+      <div class="stat-box"><div class="stat-box-label">Listing Price</div><div class="stat-box-val">₦${Number(l.price).toLocaleString()}</div></div>
+      <div class="stat-box"><div class="stat-box-label">Platform Fee (5%)</div><div class="stat-box-val">₦${Math.round(l.price*0.05).toLocaleString()}</div></div>
+    </div>
+    <button class="btn btn-primary form-submit" style="padding:13px;" onclick="confirmPurchase('${id}',${total})">Pay ₦${total.toLocaleString()} via Paystack</button>
+    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px;">Secured by GoViral Escrow · 100% refund guarantee if transfer fails</p>
+  `;
+  closeModal('detailModal');
+  openModal('buyModal');
+};
+
+window.confirmPurchase = async (listingId, amount) => {
+  if (!currentUser) return;
+  const handler = PaystackPop?.setup ? PaystackPop.setup({
+    key: 'YOUR_PAYSTACK_PUBLIC_KEY',
+    email: currentUser.email,
+    amount: amount * 100,
+    currency: 'NGN',
+    ref: 'GVM-'+Date.now(),
+    metadata: { listingId, type: 'marketplace_escrow' },
+    callback: async (response) => {
+      try {
+        await addDoc(collection(db,'marketplace_escrow'), {
+          listingId, buyerId: currentUser.uid,
+          amount, reference: response.reference,
+          status: 'held', createdAt: serverTimestamp()
+        });
+        const walletRef = doc(db,'marketplace_wallets', currentUser.uid);
+        await updateDoc(walletRef, { escrow: (currentUserData?.escrow||0) + amount });
+        closeModal('buyModal');
+        toast('Payment successful — Escrow is now active 🔒','✅');
+      } catch(e){ toast('Payment recorded but an error occurred: '+e.message,'⚠️'); }
+    },
+    onClose: () => toast('Payment was cancelled','⚠️')
+  }) : null;
+  if (handler) handler.openIframe();
+  else {
+    closeModal('buyModal');
+    toast('Demo mode — Paystack integration active in production','ℹ️');
+  }
+};
+
+// ─── CHAT ───
+window.openChat = (listingId, sellerName) => {
+  if (!currentUser) return toast('Please sign in to send messages','⚠️');
+  closeModal('detailModal');
+  activeChatId = `${listingId}_${currentUser.uid}`;
+  document.getElementById('chatTitle').textContent = `💬 Chat with ${sellerName}`;
+  document.getElementById('chatMessages').innerHTML = '';
+  if (chatUnsub) chatUnsub();
+  try {
+    const chatRef = collection(db, `marketplace_chats/${activeChatId}/messages`);
+    chatUnsub = onSnapshot(query(chatRef, orderBy('createdAt','asc')), (snap) => {
+      const box = document.getElementById('chatMessages');
+      box.innerHTML = snap.docs.map(d => {
+        const m = d.data();
+        const isMe = m.uid === currentUser.uid;
+        return `<div class="chat-msg ${isMe?'mine':'theirs'}">
+          <div class="bubble">${m.text}</div>
+          <div class="msg-time">${m.createdAt?.toDate ? new Date(m.createdAt.toDate()).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) : ''}</div>
+        </div>`;
+      }).join('') || '<div style="text-align:center;color:var(--muted);font-size:13px;padding:20px;">Start the conversation 👋</div>';
+      box.scrollTop = box.scrollHeight;
+    });
+  } catch(e){}
+  openModal('chatModal');
+};
+
+window.sendMessage = async () => {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text || !currentUser || !activeChatId) return;
+  input.value = '';
+  const box = document.getElementById('chatMessages');
+  const tmp = document.createElement('div');
+  tmp.className = 'chat-msg mine';
+  tmp.innerHTML = `<div class="bubble">${text}</div><div class="msg-time">Sending…</div>`;
+  box.appendChild(tmp);
+  box.scrollTop = box.scrollHeight;
+  try {
+    await addDoc(collection(db,`marketplace_chats/${activeChatId}/messages`), {
+      text, uid: currentUser.uid, email: currentUser.email,
+      createdAt: serverTimestamp()
+    });
+  } catch(e){ toast('Message failed to send','❌'); }
+};
+
+// ─── WALLET ───
+window.openWallet = async () => {
+  if (!currentUser) return toast('Please sign in to view your wallet','⚠️');
+  const bal = currentUserData?.balance || 0;
+  document.getElementById('walletBalance').textContent = `₦${Number(bal).toLocaleString()}`;
+  document.getElementById('escrowList').textContent = currentUserData?.escrow > 0
+    ? `₦${Number(currentUserData.escrow).toLocaleString()} currently held in escrow`
+    : 'No active escrow transactions at this time.';
+  document.getElementById('goviralBalance').textContent = '⟳';
+  openModal('walletModal');
+  // Fetch GoViral balance and saved banks in parallel
+  refreshGoviralBalance();
+  loadSavedBanks();
+};
+
+window.refreshGoviralBalance = async () => {
+  if (!currentUser) return;
+  const el = document.getElementById('goviralBalance');
+  el.textContent = '⟳';
+  try {
+    const govSnap = await getDoc(doc(db, 'users', currentUser.uid));
+    if (!govSnap.exists()) { el.textContent = '—'; return; }
+    const d = govSnap.data();
+    // GoViral stores balance as: workers → earnings, businesses → wallet
+    const govBal = d.role === 'worker' ? (d.earnings || 0) : (d.wallet || 0);
+    el.textContent = `₦${Number(govBal).toLocaleString()}`;
+  } catch(e) {
+    el.textContent = 'Unavailable';
+  }
+};
+
+window.transferFromGoviral = async () => {
+  const amount = parseInt(document.getElementById('transferAmount').value);
+  if (!amount || amount < 100) return toast('Enter a minimum transfer amount of ₦100','⚠️');
+  if (!currentUser) return toast('Please sign in','⚠️');
+  const govRef = doc(db, 'users', currentUser.uid);
+  const mktRef = doc(db, 'marketplace_wallets', currentUser.uid);
+  try {
+    await runTransaction(db, async (tx) => {
+      const govSnap = await tx.get(govRef);
+      if (!govSnap.exists()) throw new Error('GoViral account not found');
+      const gd = govSnap.data();
+      const isWorker = gd.role === 'worker';
+      // GoViral stores balance as: workers → earnings, businesses → wallet
+      const govBal = isWorker ? (gd.earnings || 0) : (gd.wallet || 0);
+      if (govBal < amount) throw new Error(`Insufficient GoViral balance. Available: ₦${Number(govBal).toLocaleString()}`);
+      const mktSnap = await tx.get(mktRef);
+      const mktBal = mktSnap.exists() ? (mktSnap.data().balance || 0) : 0;
+      tx.update(govRef, isWorker ? { earnings: govBal - amount } : { wallet: govBal - amount });
+      if (mktSnap.exists()) {
+        tx.update(mktRef, { balance: mktBal + amount });
+      } else {
+        tx.set(mktRef, { balance: amount, escrow: 0, uid: currentUser.uid, email: currentUser.email, createdAt: serverTimestamp() });
+      }
+    });
+    currentUserData = { ...currentUserData, balance: (currentUserData?.balance || 0) + amount };
+    document.getElementById('walletBalance').textContent = `₦${Number(currentUserData.balance).toLocaleString()}`;
+    document.getElementById('transferAmount').value = '';
+    refreshGoviralBalance();
+    toast(`₦${amount.toLocaleString()} transferred to Marketplace wallet ✅`,'✅');
+  } catch(e) {
+    toast(e.message || 'Transfer failed','❌');
+  }
+};
+
+window.fundWallet = () => {
+  const amount = parseInt(document.getElementById('fundAmount').value);
+  if (!amount || amount < 100) return toast('Enter a valid amount to fund','⚠️');
+  toast('Demo: Paystack payment of ₦'+amount.toLocaleString()+' would open here','ℹ️');
+};
+
+// ─── SAVED BANKS ───
+window.loadSavedBanks = async () => {
+  if (!currentUser) return;
+  try {
+    const bankRef = doc(db, 'marketplace_banks', currentUser.uid);
+    const snap = await getDoc(bankRef);
+    if (snap.exists() && snap.data().banks && snap.data().banks.length > 0) {
+      savedBanks = snap.data().banks;
+      renderSavedBanks();
+    } else {
+      savedBanks = [];
+      document.getElementById('savedBanksContainer').style.display = 'none';
+    }
+  } catch(e) {
+    savedBanks = [];
+  }
+};
+
+function renderSavedBanks() {
+  const container = document.getElementById('savedBanksContainer');
+  const list = document.getElementById('savedBanksList');
+  if (!savedBanks.length) { container.style.display = 'none'; return; }
+  container.style.display = 'block';
+  list.innerHTML = savedBanks.map((b, i) => `
+    <div class="bank-saved-item" id="savedBank_${i}" onclick="selectSavedBank(${i})">
+      <div class="bank-saved-icon">🏦</div>
+      <div class="bank-saved-info">
+        <div class="bank-saved-name">${b.bankName} — ${b.accountNumber}</div>
+        <div class="bank-saved-num">${b.accountName}</div>
+      </div>
+      <div class="check-circle" id="bankCheck_${i}"></div>
+    </div>
+  `).join('');
+}
+
+window.selectSavedBank = (i) => {
+  selectedSavedBankIndex = i;
+  document.querySelectorAll('.bank-saved-item').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+    const check = document.getElementById(`bankCheck_${idx}`);
+    if (check) check.classList.toggle('active', idx === i);
+  });
+  const b = savedBanks[i];
+  document.getElementById('withdrawBank').value = b.bankName;
+  document.getElementById('withdrawAccNum').value = b.accountNumber;
+  document.getElementById('withdrawAccName').value = b.accountName;
+  document.getElementById('bankDetailsForm').style.display = 'block';
+};
+
+window.showNewBankForm = () => {
+  selectedSavedBankIndex = -1;
+  document.querySelectorAll('.bank-saved-item').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.check-circle').forEach(el => el.classList.remove('active'));
+  document.getElementById('withdrawBank').value = '';
+  document.getElementById('withdrawAccNum').value = '';
+  document.getElementById('withdrawAccName').value = '';
+  document.getElementById('withdrawAmount').value = '';
+  document.getElementById('bankDetailsForm').style.display = 'block';
+};
+
+window.submitWithdrawal = async () => {
+  const bank = document.getElementById('withdrawBank').value.trim();
+  const accNum = document.getElementById('withdrawAccNum').value.trim();
+  const accName = document.getElementById('withdrawAccName').value.trim();
+  const amount = parseInt(document.getElementById('withdrawAmount').value);
+  if (!bank || !accNum || !accName) return toast('Please provide complete bank account details','⚠️');
+  if (!amount || amount < 500) return toast('Minimum withdrawal amount is ₦500','⚠️');
+  if (!currentUser) return toast('Please sign in','⚠️');
+  const bal = currentUserData?.balance || 0;
+  if (amount > bal) return toast(`Insufficient balance. Available: ₦${Number(bal).toLocaleString()}`,'⚠️');
+
+  // Save bank account if checkbox checked
+  const saveChecked = document.getElementById('saveBank')?.checked;
+  if (saveChecked) {
+    try {
+      const bankRef = doc(db, 'marketplace_banks', currentUser.uid);
+      const snap = await getDoc(bankRef);
+      const existing = snap.exists() ? (snap.data().banks || []) : [];
+      const alreadySaved = existing.some(b => b.accountNumber === accNum);
+      if (!alreadySaved) {
+        existing.push({ bankName: bank, accountNumber: accNum, accountName: accName });
+        await setDoc(bankRef, { banks: existing, uid: currentUser.uid, updatedAt: serverTimestamp() });
+      }
+    } catch(e) { /* silently fail for bank save */ }
+  }
+
+  // Submit withdrawal request to Firestore
+  try {
+    await addDoc(collection(db, 'marketplace_withdrawals'), {
+      uid: currentUser.uid,
+      email: currentUser.email,
+      bankName: bank,
+      accountNumber: accNum,
+      accountName: accName,
+      amount,
+      status: 'pending',
+      createdAt: serverTimestamp()
+    });
+    toast('Withdrawal request submitted — processed within 24 hours ✅','✅');
+    closeModal('walletModal');
+  } catch(e) {
+    toast('Failed to submit request: ' + e.message,'❌');
+  }
+};
+
+// ─── ADMIN ───
+window.openAdmin = () => {
+  if (!currentUser || !ADMIN_UIDS.includes(currentUser.uid)) return;
+  adminTab('pending', document.querySelector('.admin-tab'));
+  openModal('adminModal');
+};
+
+window.adminTab = async (tab, el) => {
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const content = document.getElementById('adminContent');
+  content.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:20px 0;">Loading…</div>';
+  try {
+    let q;
+    if (tab === 'pending') q = query(collection(db,'marketplace_listings'), where('status','==','pending'));
+    else if (tab === 'active') q = query(collection(db,'marketplace_listings'), where('status','==','active'));
+    else q = query(collection(db,'marketplace_escrow'), where('status','==','held'));
+    const snap = await getDocs(q);
+    const items = snap.docs.map(d=>({id:d.id,...d.data()}));
+    if (!items.length) { content.innerHTML='<div style="color:var(--muted);font-size:13px;padding:24px;text-align:center;">Nothing to display here</div>'; return; }
+    const icons = {Instagram:'📷',Twitter:'🐦',Facebook:'👥',TikTok:'🎵',YouTube:'▶️',Snapchat:'👻'};
+    content.innerHTML = items.map(item => `
+      <div class="admin-listing">
+        <div style="font-size:22px;">${icons[item.platform]||'🌐'}</div>
+        <div class="admin-listing-info">
+          <div class="admin-listing-title">${item.platform} · ${item.niche||''}</div>
+          <div class="admin-listing-sub">
+            ${tab==='escrow' ? `Escrow held — ₦${Number(item.amount||0).toLocaleString()} · Ref: ${item.reference||'N/A'}` : `₦${Number(item.price||0).toLocaleString()} · ${Number(item.followers||0).toLocaleString()} followers`}
+          </div>
+        </div>
+        <div class="admin-actions">
+          ${tab==='pending' ? `
+            <button class="btn-approve" onclick="adminApprove('${item.id}')">✓ Approve</button>
+            <button class="btn-reject" onclick="adminReject('${item.id}')">✕ Reject</button>
+          ` : tab==='escrow' ? `
+            <button class="btn-approve" onclick="adminRelease('${item.id}')">Release</button>
+            <button class="btn-reject" onclick="adminRefund('${item.id}')">Refund</button>
+          ` : `<button class="btn-reject" onclick="adminDeactivate('${item.id}')">Deactivate</button>`}
+        </div>
+      </div>`).join('');
+  } catch(e) { content.innerHTML=`<div style="color:var(--muted);font-size:13px;padding:20px 0;">Configure Firebase to load admin data.</div>`; }
+};
+
+window.adminApprove = async (id) => {
+  await updateDoc(doc(db,'marketplace_listings',id),{status:'active'});
+  toast('Listing approved and is now live','✅');
+  adminTab('pending', document.querySelector('.admin-tab.active'));
+};
+window.adminReject = async (id) => {
+  await updateDoc(doc(db,'marketplace_listings',id),{status:'rejected'});
+  toast('Listing rejected','❌');
+  adminTab('pending', document.querySelector('.admin-tab.active'));
+};
+window.adminRelease = async (id) => {
+  await updateDoc(doc(db,'marketplace_escrow',id),{status:'released',releasedAt:serverTimestamp()});
+  toast('Funds released to seller','✅');
+  adminTab('escrow', document.querySelector('.admin-tab.active'));
+};
+window.adminRefund = async (id) => {
+  await updateDoc(doc(db,'marketplace_escrow',id),{status:'refunded'});
+  toast('Buyer has been refunded','✅');
+  adminTab('escrow', document.querySelector('.admin-tab.active'));
+};
+window.adminDeactivate = async (id) => {
+  await updateDoc(doc(db,'marketplace_listings',id),{status:'inactive'});
+  toast('Listing deactivated','⚠️');
+  adminTab('active', document.querySelector('.admin-tab.active'));
+};
+
+// ─── DEMO DATA ───
+function getDemoListings() {
+  return [
+    {id:'d1',platform:'Instagram',niche:'Fashion & Lifestyle',followers:85000,engagement:4.8,reach:'350K',age:4,price:250000,desc:'Premium fashion account with a highly engaged Nigerian audience. Consistently monetized through brand partnerships. Clean account history with no artificial followers.',sellerName:'Tunde A.'},
+    {id:'d2',platform:'TikTok',niche:'Comedy & Entertainment',followers:210000,engagement:7.2,reach:'1.2M',age:2,price:180000,desc:'Viral comedy page with a majority Gen-Z Nigerian following. Regular videos hitting 100K+ views. Strong brand collaboration potential.',sellerName:'Amaka O.'},
+    {id:'d3',platform:'YouTube',niche:'Tech Reviews',followers:45000,engagement:5.1,reach:'200K',age:5,price:420000,desc:'Established tech review channel with active AdSense monetization. Transferred with all credentials, assets, and linked Gmail account.',sellerName:'Chukwu E.'},
+    {id:'d4',platform:'Twitter',niche:'Finance & Business',followers:32000,engagement:3.9,reach:'120K',age:6,price:95000,desc:'Respected finance commentary account with a professional audience. Ideal for fintech companies, investment brands, or business media.',sellerName:'Fatima B.'},
+    {id:'d5',platform:'Facebook',niche:'News & Current Affairs',followers:120000,engagement:2.8,reach:'800K',age:7,price:350000,desc:'Large verified Facebook page with consistently strong organic reach. Well-suited for media houses, news platforms, or high-volume advertisers.',sellerName:'Emeka N.'},
+    {id:'d6',platform:'Snapchat',niche:'Food & Recipes',followers:28000,engagement:8.3,reach:'90K',age:3,price:75000,desc:'Popular Nigerian food page with an exceptionally engaged community of food enthusiasts. Perfect for food brands, restaurants, or lifestyle influencers.',sellerName:'Blessing I.'},
+  ];
+}
+
+// ─── UTILS ───
+window.filterListings = () => renderListings(allListings);
+window.setTab = (tab, el) => {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  currentTab = tab;
+  filterListings();
+};
+window.scrollToListings = () => document.getElementById('listingsSection').scrollIntoView({behavior:'smooth'});
+window.openModal = (id) => document.getElementById(id).classList.add('open');
+window.closeModal = (id) => document.getElementById(id).classList.remove('open');
+window.openListModal = () => {
+  if (!currentUser && document.getElementById('authOverlay').style.display==='none') return toast('Please sign in to list an account','⚠️');
+  openModal('listModal');
+};
+
+window.toast = (msg, icon='✅') => {
+  document.getElementById('toastMsg').textContent = msg;
+  document.getElementById('toastIcon').textContent = icon;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3500);
+};
+
+// Close overlay on backdrop click
+document.querySelectorAll('.overlay').forEach(o => {
+  o.addEventListener('click', e => { if(e.target===o) o.classList.remove('open'); });
+});
+
+// Initial render for guests
+loadListingsDirect();
+</script>
+
+<script src="https://js.paystack.co/v1/inline.js" onerror="console.log('Paystack not loaded')"></script>
+</body>
+</html>
